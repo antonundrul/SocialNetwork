@@ -1,24 +1,32 @@
-.dialogs{
- display: grid;
+.dialogs {
+    display: grid;
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogsItems{
-padding: 10px;
+.dialogsItems {
+    padding: 10px;
 }
 
-.dialogsItems .dialog{
-
+.dialogsItems .dialog {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
 }
 
-.dialogsItems .active{
+
+.dialogsItems .dialog img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.dialogsItems .active {
     color: red;
 }
 
-.messages{
-padding: 10px;
+.messages {
+    padding: 10px;
 }
 
-.messages .message{
+.messages .message {
 
 }

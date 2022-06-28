@@ -1,16 +1,12 @@
 import s from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div>
-            <div>
-                <img src="https://pngicon.ru/file/uploads/voda.png"/>
-            </div>
-            <div>
-                ava + desc
-            </div>
-            <MyPosts/>
+            <ProfileInfo/>
+            <MyPosts posts={props.state.posts}/>
         </div>
     );
 }
