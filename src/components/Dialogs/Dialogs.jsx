@@ -8,8 +8,8 @@ import NewMessageBlock from "./NewMessageBlock/NewMessageBlock";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} userID={d.id}/>)
-    let messagesElements = props.state.messages.map(m => <Message message={m.message}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} userID={d.id}/>)
+    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message}/>)
 
     return (
         <div className={s.dialogs}>
@@ -18,7 +18,8 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <NewMessageBlock/>
+                <NewMessageBlock newMessageText={props.dialogsPage.newMessageText}
+                dispatch={props.dispatch}/>
             </div>
         </div>
     );
