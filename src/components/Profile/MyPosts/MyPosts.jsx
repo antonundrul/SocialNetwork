@@ -9,13 +9,13 @@ const MyPosts = (props) => {
     const newPostTextArea = React.createRef();
 
     let addPost = () => {
+        debugger;
         props.addPost();
     }
 
     let onPostChange = () => {
         let text = newPostTextArea.current.value;
         props.updateNewPostText(text);
-
     }
 
     return (
