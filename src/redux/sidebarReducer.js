@@ -1,4 +1,13 @@
-const sidebarReducer = (state, action) => {
+
+let initialState =  {
+    friends: [
+        {id: 1, name: 'Friend1'},
+        {id: 2, name: 'Friend2'},
+        {id: 3, name: 'Friend3'}
+    ]
+}
+
+const sidebarReducer = (state = initialState, action) => {
 
     /*if (action.type === ADD_POST) {
         let newPost = {
