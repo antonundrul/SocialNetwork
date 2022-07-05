@@ -3,7 +3,7 @@ import s from "./ProfileInfo.module.css"
 const ProfileInfo = () => {
     return (
         <div>
-            <div>
+            <div className={s.profileInfoContainer}>
                 <img src='https://pngicon.ru/file/uploads/voda.png'/>
             </div>
             <div className={s.descriptionBlock}>
