@@ -6,24 +6,24 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
-export const showMoreUsersActionCreator = () => ({type: SHOW_MORE_USERS})
+export const showMoreUsers = () => ({type: SHOW_MORE_USERS})
 
-export const followUserActionCreator = (userId) =>
+export const followUser = (userId) =>
     ({type: FOLLOW_USER, userId: userId})
 
-export const unfollowUserActionCreator = (userId) =>
+export const unfollowUser = (userId) =>
     ({type: UNFOLLOW_USER, userId: userId})
 
-export const setUsersActionCreator = (users) =>
+export const setUsers = (users) =>
     ({type:SET_USERS, users: users})
 
-export const setCurrentPageActionCreator = (pageNumber) =>
+export const setCurrentPage = (pageNumber) =>
     ({type:SET_CURRENT_PAGE, pageNumber: pageNumber})
 
-export const setTotalUsersCountActionCreator = (totalCount) =>
+export const setTotalUsersCount = (totalCount) =>
     ({type:SET_TOTAL_USERS_COUNT, totalCount: totalCount})
 
-export const toggleIsFetchingActionCreator = (isFetching) =>
+export const toggleIsFetching = (isFetching) =>
     ({type:TOGGLE_IS_FETCHING, isFetching: isFetching})
 
 
