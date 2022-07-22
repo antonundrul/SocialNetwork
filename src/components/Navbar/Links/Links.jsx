@@ -22,6 +22,7 @@ const Links = () => {
             <div className={s.item}>
                 <NavLink to='#' className = { navData => navData.isActive ? s.active : s.item }>Settings</NavLink>
             </div>
+
         </div>
     );
 }
