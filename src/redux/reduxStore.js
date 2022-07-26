@@ -6,6 +6,8 @@ import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 
+export const API_KEY = '5e756f19-4182-43de-b1fb-4f5a83291dc1'
+
 let reducers = combineReducers( {
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,

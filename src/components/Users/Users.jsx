@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './Users.module.css'
 import userDefaultAvatar from '../../assets/images/userDefaultAvatar.png'
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {API_KEY} from "../../redux/reduxStore";
 
 let Users = (props) => {
 
@@ -31,18 +33,48 @@ let Users = (props) => {
                 props.users.map(u => <div key={u.id} className={styles.userItem}>
                 <span>
             <div>
-               <NavLink to={'/profile/' + u.id} >
+               <NavLink to={'/profile/' + u.id}>
                 <img src={u.photos.small != null
                     ? u.photos.small
                     : userDefaultAvatar}/>
                </NavLink>
             </div>
             <div>
-                {u.followed ? <button onClick={() => {
-                        props.unfollowUser(u.id)
+                {u.followed
+                    ? <button onClick={() => {
+
+
+                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                            {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": API_KEY
+                                }
+                            })
+                            .then(response => {
+                                if (response.data.resultCode === 0) {
+                                    props.unfollowUser(u.id)
+                                }
+                            });
+
+
                     }}>Unfollow</button>
                     : <button onClick={() => {
-                        props.followUser(u.id)
+
+                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                            {},
+                            {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": API_KEY
+                                }
+                            })
+                            .then(response => {
+                                if (response.data.resultCode === 0) {
+                                    props.followUser(u.id)
+                                }
+                            });
+
                     }}>Follow</button>}
             </div>
         </span>
