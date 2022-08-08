@@ -1,15 +1,6 @@
-const SET_USER_DATA = 'SET-USER-DATA';
+import {authMe} from "../api/api";
 
-export const setAuthUserData = (userId, email, login) => (
-    {
-        type: SET_USER_DATA,
-        data: {
-            userId: userId,
-            email: email,
-            login: login
-        }
-    }
-);
+const SET_USER_DATA = 'SET-USER-DATA';
 
 let initialState = {
     userId: null,
@@ -34,6 +25,27 @@ const authReducer = (state = initialState, action) => {
             return state;
 
     }
+}
+
+export const setAuthUserData = (userId, email, login) => (
+    {
+        type: SET_USER_DATA,
+        data: {
+            userId: userId,
+            email: email,
+            login: login
+        }
+    }
+);
+
+export const authorize = () => (dispatch) => {
+    authMe().then(data => {
+        if (data.resultCode === 0) {
+            let {id, email, login} = data.data
+            dispatch(setAuthUserData(id, email, login));
+        }
+
+    });
 }
 
 export default authReducer;

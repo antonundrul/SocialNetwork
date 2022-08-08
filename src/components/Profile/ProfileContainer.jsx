@@ -1,9 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import Profile from "./Profile";
-import {addPost, setUserProfile, updateNewPostText} from "../../redux/profileReducer";
+import {addPost, getProfile, updateNewPostText} from "../../redux/profileReducer";
 import {useParams} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 
 export function withRouter(Children) {
@@ -18,11 +17,7 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId || 2;
-        usersAPI.getProfile(userId).then(data => {
-            // this.props.toggleIsFetching(false);
-            this.props.setUserProfile(data);
-
-        });
+        this.props.getProfile(userId);
     }
 
     render() {
@@ -41,4 +36,5 @@ let mapStateToProps = (state) => {
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {addPost, updateNewPostText, setUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps,
+    {addPost, updateNewPostText, getProfile})(WithUrlDataContainerComponent);

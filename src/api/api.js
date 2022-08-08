@@ -1,6 +1,6 @@
 import axios from "axios";
-import {API_KEY} from "../redux/reduxStore";
 
+const API_KEY = '5e756f19-4182-43de-b1fb-4f5a83291dc1'
 
 const axiosInstance = axios.create({
     withCredentials: true,
@@ -21,12 +21,12 @@ export const usersAPI = {
         return axiosInstance.get(`profile/${userId}`).then(response => response.data);
     },
 
-    followUser(user){
-        return axiosInstance.post(`follow/${user.id}`).then(response => response.data);
+    followUser(userId){
+        return axiosInstance.post(`follow/${userId}`).then(response => response.data);
     },
 
-    unfollowUser(user) {
-        return axiosInstance.delete(`follow/${user.id}`).then(response => response.data);
+    unfollowUser(userId) {
+        return axiosInstance.delete(`follow/${userId}`).then(response => response.data);
     }
 
 }
