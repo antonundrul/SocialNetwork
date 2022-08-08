@@ -1,10 +1,8 @@
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import NewMessageBlock from "./NewMessageBlock/NewMessageBlock";
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogsReducer";
+import {Navigate} from "react-router-dom";
 
 
 const Dialogs = (props) => {
@@ -20,6 +18,8 @@ const Dialogs = (props) => {
         let text = e.target.value;
         props.updateNewMessageBody(text);
     }
+
+    if (!props.isAuth) return <Navigate to={'/login'}/>
 
     return (
         <div className={s.dialogs}>
@@ -38,7 +38,7 @@ const Dialogs = (props) => {
                         <button onClick={sendMessage}>Send</button>
                     </div>
                 </div>
-               {/* <NewMessageBlock newMessageText={props.dialogsPage.newMessageText}
+                {/* <NewMessageBlock newMessageText={props.dialogsPage.newMessageText}
                 dispatch={props.dispatch}/>*/}
             </div>
         </div>
