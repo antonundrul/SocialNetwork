@@ -18,7 +18,8 @@ export const usersAPI = {
     },
 
     getProfile(userId) {
-        return axiosInstance.get(`profile/${userId}`).then(response => response.data);
+        console.warn('Obsolete method. Please use profileAPI object')
+        return profileAPI.getProfile(userId);
     },
 
     followUser(userId) {
@@ -27,6 +28,23 @@ export const usersAPI = {
 
     unfollowUser(userId) {
         return axiosInstance.delete(`follow/${userId}`).then(response => response.data);
+    }
+
+}
+
+
+export const profileAPI = {
+
+    getProfile(userId) {
+        return axiosInstance.get(`profile/${userId}`).then(response => response.data);
+    },
+
+    getStatus(userId){
+        return axiosInstance.get(`profile/status/${userId}`).then(response => response.data);
+    },
+
+    updateStatus(status) {
+        return axiosInstance.put(`profile/status`, {status: status}).then(response => response.data);
     }
 
 }
