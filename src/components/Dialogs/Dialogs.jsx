@@ -3,20 +3,32 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 import {Navigate} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
+const SendMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={"textarea"}
+                       name={'newMessage'}
+                       placeholder='Enter your message'/>
+            </div>
+            <div>
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
+
+const SendMessageReduxForm = reduxForm({form: 'dialogSendMessageForm'})(SendMessageForm);
 
 const Dialogs = (props) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} userID={d.id}/>)
     let messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>)
 
-    let sendMessage = () => {
-        props.sendMessage();
-    }
-
-    let onMessageChange = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageBody(text);
+    let sendMessage = (values) => {
+        props.sendMessage(values.newMessage);
     }
 
     if (!props.isAuth) return <Navigate to={'/login'}/>
@@ -28,18 +40,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <div>
-                    <div>
-                <textarea value={props.dialogsPage.newMessageText}
-                          onChange={onMessageChange}
-                          placeholder='Enter your message'/>
-                    </div>
-                    <div>
-                        <button onClick={sendMessage}>Send</button>
-                    </div>
-                </div>
-                {/* <NewMessageBlock newMessageText={props.dialogsPage.newMessageText}
-                dispatch={props.dispatch}/>*/}
+               <SendMessageReduxForm onSubmit={sendMessage}/>
             </div>
         </div>
     );
