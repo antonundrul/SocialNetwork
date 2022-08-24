@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../../api/api";
 
 const SHOW_MORE_USERS = 'SHOW-MORE-USERS';
 const FOLLOW_USER = 'FOLLOW-USER';
@@ -94,9 +94,9 @@ export const toggleIsFetching = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFet
 export const toggleFollowingProgress = (followingInProgress, userId) =>
     ({type:TOGGLE_FOLLOWING_IN_PROGRESS, followingInProgress, userId})
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
-    dispatch(setCurrentPage(currentPage));
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then(data => {
 
         dispatch(toggleIsFetching(false));
