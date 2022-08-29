@@ -2,7 +2,13 @@
     padding: 10px;
 }
 
-.profileInfoContainer img{
-    width: 100%;
+.descriptionBlock img{
+    width: 200px;
     height: 200px;
 }
+
+/*
+.profileInfoContainer img{
+    width: 100px;
+    height: 200px;
+}*/
