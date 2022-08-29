@@ -24,8 +24,6 @@ class App extends Component {
         if (!this.props.initialized) return <Preloader/>
 
         return (
-            <BrowserRouter>
-                <Provider store={store}>
                     <div className='app-wrapper'>
                         <HeaderContainer/>
                         <Navbar/>
@@ -39,8 +37,7 @@ class App extends Component {
                             </Routes>
                         </div>
                     </div>
-                </Provider>
-            </BrowserRouter>
+
         );
     }
 }
