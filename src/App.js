@@ -7,10 +7,11 @@ import ProfileContainer, {withRouter} from "./components/Profile/ProfileContaine
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {Component} from "react";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/reducers/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/reduxStore";
 
 class App extends Component {
 
@@ -20,23 +21,25 @@ class App extends Component {
 
 
     render() {
-        if(!this.props.initialized) return <Preloader />
+        if (!this.props.initialized) return <Preloader/>
 
         return (
             <BrowserRouter>
-                <div className='app-wrapper'>
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
-                        <Routes>
-                            <Route path='/profile/:userId' element={<ProfileContainer/>}/>
-                            <Route path='/profile' element={<ProfileContainer/>}/>
-                            <Route path='/dialogs/*' element={<DialogsContainer/>}/>
-                            <Route path='/users' element={<UsersContainer/>}/>
-                            <Route path='/login' element={<Login/>}/>
-                        </Routes>
+                <Provider store={store}>
+                    <div className='app-wrapper'>
+                        <HeaderContainer/>
+                        <Navbar/>
+                        <div className='app-wrapper-content'>
+                            <Routes>
+                                <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                                <Route path='/profile' element={<ProfileContainer/>}/>
+                                <Route path='/dialogs/*' element={<DialogsContainer/>}/>
+                                <Route path='/users' element={<UsersContainer/>}/>
+                                <Route path='/login' element={<Login/>}/>
+                            </Routes>
+                        </div>
                     </div>
-                </div>
+                </Provider>
             </BrowserRouter>
         );
     }

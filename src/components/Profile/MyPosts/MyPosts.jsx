@@ -22,23 +22,30 @@ const AddNewPostForm = (props) => {
 
 const AddNewPostReduxForm = reduxForm({form: 'AddNewPostForm'})(AddNewPostForm)
 
-const MyPosts = (props) => {
+class MyPosts extends React.Component {
 
-    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
-
-    let addPost = (value) => {
-        props.addPost(value.newPostText);
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return nextProps!=this.props || nextState!=this.state
     }
 
-    return (
-        <div className={s.postsBlock}>
-            <h3>myPosts</h3>
-            <AddNewPostReduxForm onSubmit={addPost}/>
-            <div className={s.posts}>
-                {postsElements}
+    render() {
+        console.log("MyPosts RENDER")
+        let postsElements = this.props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+
+        let addPost = (value) => {
+            this.props.addPost(value.newPostText);
+        }
+
+        return (
+            <div className={s.postsBlock}>
+                <h3>myPosts</h3>
+                <AddNewPostReduxForm onSubmit={addPost}/>
+                <div className={s.posts}>
+                    {postsElements}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default MyPosts;

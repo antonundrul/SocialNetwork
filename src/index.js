@@ -6,18 +6,15 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import store from "./redux/reduxStore";
-import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-setInterval(()=>{
-    store.dispatch({type:"FAKE"})
+setInterval(() => {
+    store.dispatch({type: "FAKE"})
 }, 1000)
 
 root.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>
+    <App/>
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
